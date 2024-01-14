@@ -20,9 +20,7 @@ const char* const* DeviceProvider::GetInterfaceVersions() {
 }
 
 void DeviceProvider::RunFrame() {
-    float world_scale = vr::VRSettings()->GetFloat("steam.app.438100", vr::k_pch_SteamVR_WorldScale_Float);
-
-    vr::VRSettings()->SetFloat("steam.app.438100", vr::k_pch_SteamVR_WorldScale_Float, 1.f);
+    vr::VRSettings()->SetFloat(vrchat_id, vr::k_pch_SteamVR_WorldScale_Float, 1.f);
 }
 
 void DeviceProvider::UpdateThings() {
