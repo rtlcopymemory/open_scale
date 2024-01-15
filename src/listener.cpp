@@ -47,7 +47,6 @@ void MyPacketListener::receive() {
 
 	sockaddr_in add = Socket.RecvFrom(buffer, OSC_BUFFER);
 
-	vr::VRDriverLog()->Log("received");
 	handlePacket(OSCPP::Server::Packet(buffer, OSC_BUFFER));
 }
 
