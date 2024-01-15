@@ -114,7 +114,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\openvr\lib\win$(PlatformArchitecture)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>openvr_api.lib</AdditionalDependencies>
+      <AdditionalDependencies>openvr_api.lib;Ws2_32.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>XCOPY "$(ProjectDir)$(ProjectName)" "$(SolutionDir)build\$(ProjectName)" /S /Y /I</Command>
@@ -139,9 +139,12 @@
   <ItemGroup>
     <ClCompile Include="src\device_provider.cpp" />
     <ClCompile Include="src\hmd_driver_factory.cpp" />
+    <ClCompile Include="src\listener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\device_provider.h" />
+    <ClInclude Include="src\listener.h" />
+    <ClInclude Include="src\Network.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

@@ -2,6 +2,9 @@
 
 #include "openvr_driver.h"
 
+#include "listener.h"
+#include <thread>
+
 // This can be found in C:\Program Files (x86)\Steam\config\steamvr.vrsettings
 // Change the values manually from the "Per-App Video Settings" and see which one
 // Changes. (Or just change the last number, it's the steam game ID)
@@ -18,8 +21,10 @@ public:
     void EnterStandby() override;
     void LeaveStandby() override;
 
-    void UpdateThings();
+    void MainLoop();
 
 private:
     float scale = 0.5f;
+    std::unique_ptr<std::thread> oscThread;
+    MyPacketListener listener;
 };
