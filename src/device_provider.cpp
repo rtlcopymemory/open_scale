@@ -7,6 +7,9 @@ vr::EVRInitError DeviceProvider::Init(vr::IVRDriverContext* pDriverContext) {
 
 	vr::VRDriverLog()->Log("Loading open_scale");
 
+	// Start with a reset scale
+	vr::VRSettings()->SetFloat(vrchat_id, vr::k_pch_SteamVR_WorldScale_Float, 1.f);
+
 	// Should start the OSC server thread here to read scale
 	std::thread t1(&DeviceProvider::MainLoop, this);
 	this->oscThread = std::unique_ptr<std::thread>(&t1);
