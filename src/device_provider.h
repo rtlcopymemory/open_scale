@@ -4,11 +4,14 @@
 
 #include "listener.h"
 #include <thread>
+#include <chrono>
+#include <cmath>
 
 // This can be found in C:\Program Files (x86)\Steam\config\steamvr.vrsettings
 // Change the values manually from the "Per-App Video Settings" and see which one
 // Changes. (Or just change the last number, it's the steam game ID)
 const char vrchat_id[] = "steam.app.438100";
+const char vrchat_id_secondary[] = "system.generated.vrchat.exe";
 
 class DeviceProvider : public vr::IServerTrackedDeviceProvider {
 public:
