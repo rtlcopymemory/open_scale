@@ -41,7 +41,7 @@ void DeviceProvider::MainLoop() {
 		}
 		vr::VRSettings()->SetFloat(vrchat_id, vr::k_pch_SteamVR_WorldScale_Float, scale);
 		vr::VRSettings()->SetFloat(vrchat_id_secondary, vr::k_pch_SteamVR_WorldScale_Float, scale);
-		vr::VRDriverLog()->Log(std::to_string(scale).c_str());
+		// vr::VRDriverLog()->Log(std::to_string(scale).c_str());
 		});
 
 	vr::VRDriverLog()->Log("Callback Set");
