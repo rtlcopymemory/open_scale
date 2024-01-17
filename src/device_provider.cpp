@@ -29,16 +29,24 @@ void DeviceProvider::MainLoop() {
 	this->listener.setCallback([](float scale) {
 		// Scale is [0, 1] from VRC due to synced parameters limitations.
 		// World scale needs to map that [0, 1] -> [10, 0.1] but as [0, 0.5] -> [10, 1] and [0.5, 1] -> [1, 0.1]
-		if (0.5f - scale > 0.08f) {
-			// [0, 0.5] -> [10, 1]
-			scale *= 2;  // [0, 0.5] -> [0, 1]
-			scale = lerp(10.f, 1.f, scale);
-		}
-		else {
-			// [0.5, 1] -> [1, 0.1]
-			scale = (scale - 0.5f) * 2; // [0.5, 1] -> [0, 1]
-			scale = lerp(1.f, 0.1f, scale);
-		}
+		//if (0.5f - scale > 0.08f) {
+		//	// [0, 0.5] -> [10, 1]
+		//	scale *= 2;  // [0, 0.5] -> [0, 1]
+		//	scale = lerp(10.f, 1.f, scale);
+		//}
+		//else {
+		//	// [0.5, 1] -> [1, 0.1]
+		//	scale = (scale - 0.5f) * 2; // [0.5, 1] -> [0, 1]
+		//	scale = lerp(1.f, 0.1f, scale);
+		//}
+
+		// Ok so, scaling down is buggier than scaling up...
+		
+		// [0, 1] -> [1, 0.1]
+		// It seems to be possible to set these to values outside
+		// of the ones that the SteamVR UI allows you to set, like 0.01
+		scale = lerp(1.f, .1f, scale);
+
 		vr::VRSettings()->SetFloat(vrchat_id, vr::k_pch_SteamVR_WorldScale_Float, scale);
 		vr::VRSettings()->SetFloat(vrchat_id_secondary, vr::k_pch_SteamVR_WorldScale_Float, scale);
 		// vr::VRDriverLog()->Log(std::to_string(scale).c_str());

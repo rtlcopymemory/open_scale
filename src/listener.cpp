@@ -39,6 +39,8 @@ void MyPacketListener::handlePacket(const OSCPP::Server::Packet& packet)
 			float new_scale = args.float32();
 			this->m_callback(new_scale);
 		}
+		// Should also catch an eye_height change which means the user changed their
+		// in-game scale which breaks this
 	}
 }
 
